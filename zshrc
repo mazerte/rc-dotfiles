@@ -1,4 +1,5 @@
 # Set Variables
+export DOTFILES="$HOME/dotfiles"
 
 # Change ZSH Options
 
@@ -21,7 +22,7 @@ setopt globDots
 alias watch='watch --color ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias ls='exa'
 # alias cat='bat'
-alias exa='exa -laFh --git'
+alias a='exa -laFh --git'
 alias trail='<<<${(F)path}'
 alias ftrail='<<<${(F)fpath}'
 # alias man=batman
@@ -60,7 +61,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs terraform nvm command
 autoload -U add-zsh-hook
 
 source <(antibody init)
-antibody bundle < "$HOME/antibody_plugins"
+antibody bundle < "$DOTFILES/antibody_plugins"
 
 # Set oh-my-zsh path
 plugins=(
