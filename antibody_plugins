@@ -1,0 +1,22 @@
+ohmyzsh/ohmyzsh
+ohmyzsh/ohmyzsh path:plugins/nvm
+ohmyzsh/ohmyzsh path:plugins/aws
+ohmyzsh/ohmyzsh path:plugins/kubectl
+ohmyzsh/ohmyzsh path:plugins/terraform
+
+romkatv/powerlevel10k
+
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+
+zdharma-continuum/history-search-multi-word
+zdharma-continuum/fast-syntax-highlighting
+
+# denysdovhan/spaceship-prompt
+
+# This plugin might need to be the last one.
+# https://github.com/zsh-users/zsh-history-substring-search#usage
+# If you want to use zsh-syntax-highlighting along
+# with this script, then make sure that you load it
+# before you load this script:
+zsh-users/zsh-history-substring-search

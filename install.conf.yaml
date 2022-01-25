@@ -1,0 +1,42 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.zshrc:
+    ~/.zsh:
+    ~/.vimrc:
+    ~/.vim:
+    ~/.zshenv:
+    ~/.gitattributes:
+    ~/.gitignore:
+    ~/.gitconfig:
+    ~/.editorconfig:
+    ~/.curlrc:
+
+- shell:
+    # Install packages
+    - command: >
+        apt update \
+        && apt install -y --no-install-recommends --allow-downgrades \
+          ca-certificates \
+          git \
+          zsh \
+          exa \
+          jq \
+          wget \
+          curl \
+          vim \
+          zsh-theme-powerlevel9k
+      stdout: true
+      stderr: true
+    # Install antibody
+    - command: "curl -sfL git.io/antibody | sh -s - -b /usr/local/bin"
+      stdout: true
+      stderr: true
+    # Install VSCode extension
+    - command: "cat vscode_extensions | xargs -L 1 code --install-extension"
+      stdout: true
+      stderr: true
