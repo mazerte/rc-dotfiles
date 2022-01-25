@@ -18,7 +18,7 @@
 
 - shell:
     # Install packages
-    - command: >
+    - command: |
         apt update \
         && apt install -y --no-install-recommends --allow-downgrades \
           ca-certificates \
@@ -37,6 +37,6 @@
       stdout: true
       stderr: true
     # Install VSCode extension
-    - command: "cat vscode_extensions | xargs -L 1 code --install-extension"
-      stdout: true
-      stderr: true
+    # - command: "cat vscode_extensions | xargs -L 1 code --install-extension"
+    #   stdout: true
+    #   stderr: true
