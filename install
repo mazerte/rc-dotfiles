@@ -2,6 +2,28 @@
 
 set -e
 
+####################
+# Install packages #
+####################
+
+sudo apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+      ca-certificates \
+      git \
+      zsh \
+      exa \
+      jq \
+      wget \
+      curl \
+      vim \
+      zsh-theme-powerlevel9k
+
+sudo curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
+
+###########
+# Dot Bot #
+###########
+
 CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
 
