@@ -1,37 +1,92 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-set -e
+sukkaEnvVersion="VSCode Codespaces"
 
-####################
-# Install packages #
-####################
+start() {
+    clear
+    curl ip.gs
+    echo ""
+    echo "==========================================================="
+    echo "   _____       _    _            ______                    "
+    echo "  / ____|     | |  | |          |  ____|                   "
+    echo " | (___  _   _| | _| | ____ _   | |__   ______   __        "
+    echo "  \___ \| | | | |/ / |/ / _\` |  |  __| |  _ \\ \\ / /     "
+    echo "  ____) | |_| |   <|   < (_| |  | |____| | | \\ V /        "
+    echo " |_____/ \__,_|_|\\_\\_|\\_\\__,_|  |______|_| |_|\\_/     "
+    echo "                                                           "
+    echo "==========================================================="
+    echo "                !! ATTENTION !!"
+    echo "YOU ARE SETTING UP: Sukka Environment (${sukkaEnvVersion})"
+    echo "==========================================================="
+    echo ""
+    echo -n "* The setup will begin in 5 seconds... "
+    sleep 5
+    echo -n "Times up! Here we start!"
+    echo ""
 
-sudo apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-      ca-certificates \
-      git \
-      zsh \
-      exa \
-      jq \
-      wget \
-      curl \
-      vim \
-      zsh-theme-powerlevel9k
+    cd $HOME
+}
 
-sudo curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
+install-linux-packages() {
+    echo "==========================================================="
+    echo "* Install following packages:"
+    echo "-----------------------------------------------------------"
 
-###########
-# Dot Bot #
-###########
+    sudo apt-get update
+    sudo apt-get install -y apt-file aptitude deborphan
+    sudo apt-get install -y build-essential libreadline-dev
+    sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux trash-cli
+    sudo apt-get install -y lsof whois traceroute
+    sudo apt-get install -y net-tools iputils-tracepath dnsutils
+    sudo apt-get install -y netcat-openbsd
+    sudo apt-get install -y exa jq vim
+    sudo apt-get install -y zsh-theme-powerlevel9k
+}
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+install-antibody(){
+    sudo curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
+}
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+run-dotbot() {
+    echo "==========================================================="
+    echo "                  Run DotBot                   "
+    echo "-----------------------------------------------------------"
 
-cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
+    CONFIG="install.conf.yaml"
+    DOTBOT_DIR="dotbot"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+    DOTBOT_BIN="bin/dotbot"
+    BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    cd "${BASEDIR}"
+    git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+    git submodule update --init --recursive "${DOTBOT_DIR}"
+
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+}
+
+upgrade-packages() {
+    echo "==========================================================="
+    echo "                      Upgrade packages                     "
+    echo "-----------------------------------------------------------"
+
+    sudo apt-get update && sudo apt-get upgrade -y
+}
+
+finish() {
+    echo "==========================================================="
+    echo "> Do not forget run those things:"
+    echo ""
+    echo "- chsh -s /usr/bin/zsh"
+    echo "- git-config"
+    echo "- set up neovim"
+    echo "- u-update"
+    echo "==========================================================="
+}
+
+start
+install-linux-packages
+install-antibody
+run-dotbot
+upgrade-packages
+finish
