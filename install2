@@ -14,7 +14,7 @@ sudo apt-get install -y --no-install-recommends --allow-downgrades \
     vim \
     zsh-theme-powerlevel9k
 
-curl -sfL git.io/antibody | sodu sh -s - -b /usr/local/bin
+curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin
 
 CONFIG="install.conf.yaml"
 SUDO_CONFIG="install-sudo.conf.yaml"
