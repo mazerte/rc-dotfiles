@@ -22,7 +22,7 @@ setopt globDots
 alias watch='watch --color ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias ls='exa'
 # alias cat='bat'
-alias a='exa -laFh --git'
+alias exa='exa -laFh --git'
 alias trail='<<<${(F)path}'
 alias ftrail='<<<${(F)fpath}'
 # alias man=batman
