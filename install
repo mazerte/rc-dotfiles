@@ -85,7 +85,7 @@ finish() {
 }
 
 echo "---------------------"
-sudo apt-get install -y exa jq vim
+sudo apt-get install -y jq
 echo "---------------------"
 
 start
