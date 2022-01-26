@@ -5,16 +5,11 @@
 - clean: ["~"]
 
 - link:
-    /etc/zshrc/zshrc:
-      path: zshrc
-      force: true
-    /etc/zshrc/zshenv:
-      path: zshenv
-      force: true
+    ~/.zshrc:
+    ~/.zshenv:
     ~/.zsh:
     ~/.vimrc:
     ~/.vim:
-    ~/.zshenv:
     ~/.gitattributes:
     ~/.gitignore:
     ~/.gitconfig:
